@@ -1,6 +1,6 @@
 -- today was a moment to re-understanding how to interact with a database.
 
-CREATE TABLE waterBottles (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE)
+CREATE TABLE waterBottles (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE);
 --THIS WAY A NAME WILL NEVER BE DELIBERATELY DECLARED NULL. AND IT SHALL NOT DUPLICATE.
 
 --To verify;  INSERT INTO waterBottles (name) VALUES (NULL);
@@ -14,7 +14,7 @@ CREATE TABLE waterBottles (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT N
 SELECT * FROM tableName;
 
 --to update something new. or to put so to say. 
-UPDATE categories SET name = 'Fanta' WHERE name = 'Beverages'; 
+UPDATE categories SET name = 'Fanta' WHERE name = 'BEVERAGES'; 
 
 --to remove an existing row...
 
