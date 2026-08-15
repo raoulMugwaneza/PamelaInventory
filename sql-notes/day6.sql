@@ -24,3 +24,10 @@ CREATE TABLE products (
     category_id INTEGER,
     FOREIGN KEY (category_id) REFERENCES categories(id)
 ); 
+
+--To reinforce any form of foreign key; you must use the following:
+
+PRAGMA foreign_keys = ON; 
+
+--this way, all data that does not have a valid foreign key will 
+--be rejected with a code that says: "FOREIGN KEY constraint failed"
