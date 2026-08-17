@@ -1,16 +1,9 @@
 const express = require('express');
 const app = express();
-const greetRouter = require('./routes/greet'); 
-const searchRouter = require('./routes/search'); 
-const updateRouter = require('./routes/update');
-const deleteRouter = require('./routes/delete'); 
+const productsRouter = require('./routes/products')
 
-
-app.use('/search', searchRouter); 
-app.use('/greet', greetRouter); 
-app.use('/put', updateRouter);
-app.use('/delete', deleteRouter); 
-
+app.use(express.json()); 
+app.use('/products', productsRouter); 
 app.get('/', (req, res) => {
     res.send('Pamoja says hello')
 });
