@@ -13,3 +13,28 @@
 
 -- DROP table is real understanding. 
 --end of day 9. 
+
+while building relationships. You can follow this table:
+
+users
+  │
+  │ users.id = orders.user_id
+  ↓
+orders
+  │
+  │ orders.id = order_items.order_id
+  ↓
+order_items
+  │
+  │ order_items.product_id = products.id
+  ↓
+products
+
+JOIN users.name ON users.id = order_items.order_id; 
+
+SELECT users.name , products.name, order_items.quantity
+FROM order_items 
+JOIN orders ON orders.id = order_items.order_id
+JOIN users ON users.id = orders.user_id
+JOIN products ON products.id = order_items.product_id; 
+
