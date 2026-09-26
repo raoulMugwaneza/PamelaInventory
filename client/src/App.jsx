@@ -1,14 +1,27 @@
-import ProductCard from "./ProductCard"
+import { useEffect, useState} from 'react';
+import ProductCard from "./ProductCard";
+
 
 
 function App(){
+
+  const [products, setProducts] = useState([]);
+
+
+  useEffect(() => {
+  async function loadProducts() {
+    const response = await fetch('http://localhost:3001/products');
+    const data = await response.json();
+    setProducts(data);
+  }
+  loadProducts();
+}, []);
+
   return (
     <> 
     <h1>Pamoja</h1>
     <p>Inventory system</p>
-    <ProductCard name="Water" price="10K"/>
-    <ProductCard name="Food" price="20K"/>
-    <ProductCard name="Clothing" price="30K"/>
+    {products.map((product) => (<ProductCard key={product.id} name = {product.name} price = {product.price}/>))}
     </>
   )
 }
