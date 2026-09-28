@@ -4,11 +4,11 @@ const router = express.Router()
 
 router.put('/:id', (req,res) => {
     const id = req.params.id;
-    const {name} = req.body; 
+    const {name, price} = req.body; 
     
     try{
-        let multitude = data.prepare('UPDATE products SET name = ? WHERE id = ?')
-        .run(name, id); 
+        let multitude = data.prepare('UPDATE products SET name = ? , price = ? WHERE id = ?')
+        .run(name, price, id); 
 
         if (multitude.changes >0){
             res.send('Update successful')
@@ -71,9 +71,9 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     let result; 
 
-    const {name, category_id} = req.body; 
+    const {name, category_id, price} = req.body; 
     
-    try {result = data.prepare('INSERT INTO products (name, category_id) VALUES (?,?)').run(name, category_id);
+    try {result = data.prepare('INSERT INTO products (name, category_id, price) VALUES (?,?,?)').run(name, category_id, price);
         res.status(201).json({id: result.lastInsertRowid, name})
     }
     catch (error) { res.status(400).json({error: error.message})}
