@@ -3,7 +3,8 @@
 --a coldly written route for exercise. Starting time 07:53
 
 const db = require('../pamoja.db'); 
-const router = require(express.js); 
+const express = require('express'); 
+const router = express.Router(); 
 
 router.get('/:id', (req, res)=> {
     const {id} = req.params.id;
@@ -66,7 +67,7 @@ router.insert('/', (req,res)=>{
     }
 }); 
 
-module.export(router); 
+module.exports = router; 
 
 --completed 08:15
 

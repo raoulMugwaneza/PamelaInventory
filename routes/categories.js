@@ -41,15 +41,15 @@ router.post('/', (req, res)=>{
     catch (error){res.status(400).json({error: error.message})}
 })
 
-router.put('/',(req, res)=>{
-    const {id} = req.params.id; 
-    const {target, newValue} = req.body;
+router.put('/:id',(req, res)=>{
+    const {id} = req.params; 
+    const {name} = req.body;
 
   try {
 
-    let newer = db.prepare(`UPDATE categories set ${target} = ?  WHERE id = ?`).run(newValue, id); 
+    let newer = db.prepare(`UPDATE categories set name = ?  WHERE id = ?`).run(name, id); 
 
-    if (newer.changes > 0 ) { res.json(`${target} updated successfully`)}
+    if (newer.changes > 0 ) { res.json(`${name} updated successfully`)}
     else {
         res.status(404).json({error: 'Id not found, please try again.'})
     } }
@@ -60,18 +60,19 @@ router.put('/',(req, res)=>{
 
 router.delete('/:id', (req, res)=>{
 
-    const {id} = req.params.id;
-    let newer = db.prepare('DELETE FROM  categories WHERE id = ?').run(id); 
+    const {id} = req.params;
+    
 
     try { 
+        let newer = db.prepare('DELETE FROM  categories WHERE id = ?').run(id); 
         if (newer.changes > 0){
             res.json(`Deleted successfully`)
         } 
     
-        else { res.status(400).json({error: "We can't find the requested ID"})}
+        else { res.status(404).json({error: "We can't find the requested ID"})}
     }
 
-    catch (error){res.json({error:error.message})}
+    catch (error){res.status(500).json({error:error.message})}
 }); 
 
 
